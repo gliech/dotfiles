@@ -1,2 +1,5 @@
 [status]
-	showUntrackedFiles = no
+    showUntrackedFiles = no
+[submodule ".dotfiles/submodules/vim-plug"]
+    url = git@github.com:junegunn/vim-plug.git
+    active = true
