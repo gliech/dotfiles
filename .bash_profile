@@ -1,10 +1,5 @@
 # .bash_profile
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-  . ~/.bashrc
-fi
-
 # User specific environment and startup programs
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export PATH
@@ -15,6 +10,15 @@ export PATH
 # security or privacy reasons.
 set -a
 for file in ~/.environment.d/*.env; do
-  . "$FILE"
+  . "$file"
 done
 set +a
+
+# Source the .bashrc if the Filedescriptor for stdin is opened. This is a very
+# simple test to determine if the .bash_profile was sourced from VT or SSH-login
+# where the .bashrc has to be sourced to provide a similar environment to a
+# terminal emulator. Found here:
+# https://eklitzke.org/effectively-using-bash-profile
+if [[ -t 0 && -f ~/.bashrc ]]; then
+  . ~/.bashrc
+fi
