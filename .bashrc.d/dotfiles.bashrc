@@ -23,7 +23,7 @@ do
   then
     . $completion_file
     __git_complete dotfiles __git_main
-    if [[ dot_aliased == "yes" ]]
+    if [[ $dot_aliased == yes ]]
     then
       __git_complete dot __git_main
     fi
