@@ -19,6 +19,6 @@ set +a
 # where the .bashrc has to be sourced to provide a similar environment to a
 # terminal emulator. Found here:
 # https://eklitzke.org/effectively-using-bash-profile
-if [[ -t 0 && -f ~/.bashrc ]]; then
+if [[ -t 0 && -r ~/.bashrc ]]; then
   . ~/.bashrc
 fi
