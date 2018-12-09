@@ -1,0 +1,9 @@
+/* Stuff from github.com/kurogetsusai/firefox-gnome-theme/userChrome.css */
+@import "firefox-gnome-theme/ui/gnome-3.26-light.css";
+@import "firefox-gnome-theme/ui/experimental-auto-csd.css";
+@import "firefox-gnome-theme/ui/matching-autocomplete-width.css";
+/*@import "ui/symbolic-tab-icons.css"; /**/
+
+/* My tweaks */
+@import "firefox-gnome-theme-tweaks/gnome-tab-width.css";
+@import "firefox-gnome-theme-tweaks/gnome-newtab-buttons.css";

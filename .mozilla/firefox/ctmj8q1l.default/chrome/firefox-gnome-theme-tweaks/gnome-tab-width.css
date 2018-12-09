@@ -1,0 +1,22 @@
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#tabbrowser-tabs[closebuttons="activetab"] > .tabbrowser-tab > .tab-stack > .tab-content > .tab-close-button:not([selected="true"]):not([pinned]) {
+	display: -moz-box !important ;
+}
+
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]) .tab-throbber,
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]) .tab-throbber-fallback,
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]):not([busy]) .tab-icon-image,
+#tabbrowser-tabs[closebuttons="activetab"] .tabbrowser-tab:not([selected="true"]):not([image]) .tab-label-container {
+	margin-left: auto !important ;
+}
+
+tabs#tabbrowser-tabs {
+	--tab-min-width: 200px !important ;
+}
+
+/* Can't replace the tab label overflow fadeout with anything better
+.tab-label-container[textoverflow]:not([pinned]) {
+	mask-image: unset !important;
+}*/
+

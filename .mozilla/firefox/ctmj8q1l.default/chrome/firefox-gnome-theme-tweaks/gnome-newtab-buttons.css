@@ -1,0 +1,12 @@
+@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+.tabs-newtab-button,
+#TabsToolbar > #new-tab-button,
+#TabsToolbar > toolbarpaletteitem > #new-tab-button,
+#new-tab-button .toolbarbutton-icon {
+	filter: var(--gnome-icons-hack-filter);
+	list-style-image: url("moz-icon://stock/tab-new-symbolic?size=dialog") !important;
+}
+.tabs-newtab-button {
+	margin-right: 6px !important;
+}
