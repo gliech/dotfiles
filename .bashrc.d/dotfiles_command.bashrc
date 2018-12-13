@@ -1,8 +1,9 @@
 # Alias dotfiles to the custom git command required for the functioning of the
 # dotfiles utility
-dotgit_config="$HOME/.dotfiles/dotgit_config"
-dotgit_dir="$HOME/.dotgit/"
-alias dotfiles="git -c include.path=$dotgit_config --git-dir=$dotgit_dir --work-tree=$HOME"
+alias dotfiles="git \
+  -c include.path=$DOTFILES_DIR/dotgit_config \
+  --git-dir=$DOTFILES_GITDIR \
+  --work-tree=$HOME"
 
 # Shorten the dotfiles command to dot if possible
 if ! command -v dot >/dev/null 2>&1
@@ -30,3 +31,6 @@ do
     break
   fi
 done
+
+unset -v dot_aliased possible_locations completion_file
+
