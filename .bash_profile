@@ -22,3 +22,5 @@ set +a
 if [[ -t 0 && -r ~/.bashrc ]]; then
   . ~/.bashrc
 fi
+
+unset -v file
