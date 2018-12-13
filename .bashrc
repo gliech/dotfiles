@@ -43,7 +43,7 @@ else
   if truthy $DOTFILES_ACTIVE; then
 
     # Source .bashrc.d
-    for file in ~/.bashrc.d/*.bashrc; do
+    for file in ~/.bashrc.d/*.sh; do
       . "$file"
     done
 
