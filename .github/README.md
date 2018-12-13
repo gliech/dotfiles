@@ -17,8 +17,17 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
   - userChrome.css
   - control profiles.ini
 - Gnome Extensions
+  - AWS EC2 SSH helper
+  - Battery Status
   - Disable workspace switcher popup
   - Gsconnect (Warning für die ganzen optionalen Pakete, die das braucht)
-  - No topleft hot corner
   - Launch new instance
+  - No topleft hot corner
+  - Status area horizonzal spacing
+  - Vitals
+
+# Missing Features (TODO)
+- Vim relative line numbering
+- unset all variables
+- fix the umask
 
