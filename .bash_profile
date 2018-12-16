@@ -14,13 +14,16 @@ for file in ~/.environment.d/*.env; do
 done
 set +a
 
-# Source the .bashrc if the Filedescriptor for stdin is opened. This is a very
+unset -v file
+
+# Source the .bashrc if the file descriptor for stdin is opened. This is a very
 # simple test to determine if the .bash_profile was sourced from VT or SSH-login
 # where the .bashrc has to be sourced to provide a similar environment to a
 # terminal emulator. Found here:
 # https://eklitzke.org/effectively-using-bash-profile
-if [[ -t 0 && -r ~/.bashrc ]]; then
+# I had to move the actual test '-t 0' over to the bashrc. More information as
+# to why can be found there.
+if [[ -r ~/.bashrc ]]; then
   . ~/.bashrc
 fi
 
-unset -v file
