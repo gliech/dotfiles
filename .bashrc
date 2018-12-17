@@ -51,15 +51,23 @@ function true_false_default {
 
 export -f truthy falsy true_false_default
 
+# Now that we have the bare essentials, determine if the rest of the configura-
+# tion should be loaded. DOTFILES_ACTIVE is a environment variable that can be
+# set in ~/.environment.d/dotfiles.env
 if truthy $DOTFILES_ACTIVE; then
 
-  # Source .bashrc.d
+  # Load utilty functions that may be used by other configurations
+  . "$DOTFILES_DIR/bash_functions.sh"
+
+  # Load the rest of the bash configs in ~/.basrc.d
   for file in ~/.bashrc.d/*.sh; do
     . "$file"
   done
 
   unset -v file
 
+# If the DOTFILES_ACTIVE is not set at all, assume that the dotfiles repo was
+# cloned very recently and print a friendly reminder.
 elif [[ ! -v DOTFILES_ACTIVE ]]; then
   echo "Dotfiles environment not found." >&2
   echo "You should probably reload your login session before proceeding." >&2
