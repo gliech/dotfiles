@@ -29,5 +29,12 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
 # Missing Features (TODO)
 - Vim relative line numbering
 - unset all variables
+- Initial Setup
+  - do the eye candy messaging stuff
+  - restructure setup
+  - add proper status messages to vim-plug install
+  - install vim plugins
+  - missing executables warnings
+  - environment templates?
 - fix the umask
 
