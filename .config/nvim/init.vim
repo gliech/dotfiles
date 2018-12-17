@@ -17,11 +17,13 @@ Col
 " and HideTabs.
 set nowrap
 set list
-command ShowTabs let &l:listchars = 'tab:╾─,extends:┃,precedes:┃,nbsp:␣'
-command HideTabs let &l:listchars = 'tab:  ,extends:┃,precedes:┃,nbsp:␣'
-ShowTabs
+set showbreak=❱
+set listchars=tab:╾─,extends:❱,precedes:❰,nbsp:␣
+command ShowTabs set listchars-=tab:\ \ 
+command HideTabs set listchars+=tab:\ \ 
 set sidescroll=1
 set sidescrolloff=8
+set scrolloff=2
 
 " Classic
 set number
