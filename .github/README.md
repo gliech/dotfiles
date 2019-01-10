@@ -5,7 +5,7 @@
 git clone -n --config core.bare=true --separate-git-dir=$HOME/.dotgit git@github.com:gliech/dotfiles.git $(mktemp -d)
 git --work-tree=$HOME --git-dir=$HOME/.dotgit reset HEAD
 git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout -b $HOSTNAME
-git --work-tree=$HOME --git-dir=$HOME/.dotgit commit -am "Backed up pre-existing configs to local branch"
+git --work-tree=$HOME --git-dir=$HOME/.dotgit -c user.name="$USER" -c user.email="${USER}@${HOSTNAME}" commit -am "Backed up pre-existing configs to local branch"
 git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
 ```
 
@@ -35,6 +35,6 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
   - add proper status messages to vim-plug install
   - install vim plugins
   - missing executables warnings
-  - environment templates?
+  - environment templates? (git.env!)
 - fix the umask
 
