@@ -1,7 +1,8 @@
 call plug#begin()
 " Display if updates for plugins are available
 Plug 'semanser/vim-outdated-plugins'
-" Show trailing whitespaces (this could also easaly be achieved by settings
+" Show trailing whitespaces (this could also easily be achieved by settings,
+" but the plugin is very neat)
 Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
