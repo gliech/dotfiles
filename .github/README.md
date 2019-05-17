@@ -26,7 +26,7 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
   - Status area horizonzal spacing
   - Vitals
 
-# Missing Features (TODO)
+## Missing Features (TODO)
 - Vim relative line numbering
 - unset all variables
 - Initial Setup
@@ -37,4 +37,10 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
   - missing executables warnings
   - environment templates? (git.env!)
 - fix the umask
+- Vim put the Yaml indent Stuff in a proper filetype detection script (ftplugin?)
+- Vim also add cfn filetype for cfn-lint
+
+## Echos to be replaced by msg()
+- fuck error msg
+- initial setup
 

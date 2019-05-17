@@ -16,6 +16,7 @@ fi
 possible_locations=(
   "/usr/share/doc/git/contrib/completion/git-completion.bash"
   "/usr/share/git/completion/git-completion.bash"
+  "/usr/share/bash-completion/completions/git"
 )
 
 for completion_file in "${possible_locations[@]}"
