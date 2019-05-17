@@ -3,11 +3,13 @@ call plug#begin()
 Plug 'semanser/vim-outdated-plugins'
 " Show trailing whitespaces (this could also easaly be achieved by settings
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
 call plug#end()
 
 " Add a set of commands that will make the 80th column of a document visible
 highlight ColorColumn ctermbg=244 guibg=lightgrey
-command Col let &colorcolumn=join(range(81,999),",")
+command Col let &colorcolumn=join(range(81,100),",")
 command NoCol set colorcolumn=
 Col
 
@@ -28,3 +30,6 @@ set scrolloff=2
 " Classic
 set number
 
+" Yaml Indent
+"autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

@@ -37,6 +37,8 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
   - missing executables warnings
   - environment templates? (git.env!)
 - fix the umask
+- Vim put the Yaml indent Stuff in a proper filetype detection script (ftplugin?)
+- Vim also add cfn filetype for cfn-lint
 
 ## Echos to be replaced by msg()
 - fuck error msg
