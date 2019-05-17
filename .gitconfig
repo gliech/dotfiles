@@ -12,6 +12,7 @@
     default = simple
 [core]
     excludesfile = ~/.gitignore
+    autocrlf = input
 [status]
     submoduleSummary = true
 [pager]
