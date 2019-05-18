@@ -1,0 +1,10 @@
+function _aws-auth {
+  if [ "${#COMP_WORDS[@]}" != "2" ]; then
+    return
+  fi
+  local aws_profiles
+  aws_profiles="$(pcre2grep -O '$1' '(?>\[\s*profile )(\S+)(?>\s*\])' ~/.aws/config)"
+  COMPREPLY=($(compgen -W "$aws_profiles" "${COMP_WORDS[$COMP_CWORD]}" ))
+}
+
+complete -F _aws-auth aws-auth
