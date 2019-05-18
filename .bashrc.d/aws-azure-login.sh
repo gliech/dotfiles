@@ -10,6 +10,6 @@ if truthy $DOTFILES_WSL; then
 fi
 
 # Make it so I just have to type a command and the (optionally) a profile
-function aws-token {
+function aws-auth {
   aws-azure-login --no-prompt ${1:+--profile $1}
 }
