@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 function autosource {
+  local bash_function_dirs bash_function_dir
+
   # Test if 1 argument was given
   if (( $# == 0 )); then
     echo "autosource: basename of a file in BASH_FUNC_PATH required"
