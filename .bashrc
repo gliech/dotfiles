@@ -21,43 +21,18 @@ if (( BASH_VERSINFO[0] < 4 )); then
   return 1
 fi
 
-# Basic safe boolean evaluation. See this Gist for details:
-# https://gist.github.com/gliech/184dc7566821442202f21dfe15e2b7ff
-function truthy {
-  if [[ "${1,,}" == @(y|yes|on|true|1) ]]; then
-    return 0
-  fi
-  return 1
-}
+# Determine if the rest of the configuration should be loaded. DOTFILES_ACTIVE
+# is a environment variable that can be set in ~/.environment.d/dotfiles.env
+if [[ "${DOTFILES_ACTIVE,,}" == @(y|yes|on|true|1) ]]; then
 
-function falsy {
-  if [[ "${1,,}" == @(n|no|off|false|0) ]]; then
-    return 0
-  fi
-  return 1
-}
-
-function true_false_default {
-  case "${1,,}" in
-    y | yes | on | true | 1)
-      return 0 ;;
-    n | no | off | false | 0)
-      return 1 ;;
-  esac
-  shift
-  eval "$@"
-  return 1
-}
-
-export -f truthy falsy true_false_default
-
-# Now that we have the bare essentials, determine if the rest of the configura-
-# tion should be loaded. DOTFILES_ACTIVE is a environment variable that can be
-# set in ~/.environment.d/dotfiles.env
-if truthy $DOTFILES_ACTIVE; then
+  # Load a function that allows us to import other function definitions from
+  # the BASH_FUNC_PATH without providing their exact location and export it
+  . "$DOTFILES_DIR/bash_functions/autosource.sh"
+  export -f autosource
 
   # Load utilty functions that may be used by other configurations
-  . "$DOTFILES_DIR/bash_functions.sh"
+  autosource bool_eval
+  autosource dot_utility
 
   # Load the rest of the bash configs in ~/.basrc.d
   for file in ~/.bashrc.d/*.sh; do
