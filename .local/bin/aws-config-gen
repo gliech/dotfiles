@@ -74,8 +74,7 @@ def print_config(profiles, print_default=False):
     config = ConfigParser()
     if print_default:
         config.add_section('default')
-    for section, properties in profiles:
-        config[section] = properties
+    config.read_dict(dict(profiles))
     config.write(sys.stdout)
 
 if __name__ == '__main__':
