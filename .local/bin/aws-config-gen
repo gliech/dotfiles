@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+
+"""
+Parse the HTML of https://signin.aws.amazon.com/saml to extract all assumable
+roles for use in .aws/config
+
+Usage:
+    aws-config-gen [--print-default-profile] [--default-role=<name>]
+                   [--region=<name>] [--suffix=<name>] <file>
+    aws-config-gen -h | --help
+    aws-config-gen --version
+
+Arguments:
+    file  Downloaded HTML File of the AWS SAML login page
+
+Options:
+    -d, --print-default-profile  Begin output with an empty [default] profile.
+    --default-role=<name>        If more than one role can be assumed in the
+                                 same account, this option determines which one
+                                 will get the shorthand profile name without an
+                                 additional suffix. [default: developer-admin]
+    -r, --region=<name>          Add the specified aws region to each profile's
+                                 properties.
+    -s, --suffix=<name>          Append a suffix to each profile name.
+    --version                    Show version info.
+    -h --help                    Show this help screen.
+
+Examples:
+    aws-config-gen -d aws-signin.html > ~/.aws/config
+    aws-config-gen -r eu-central-1 -s -fra aws-signin.html >> ~/.aws/config
+"""
+
+import sys
+import re
+
+from docopt import docopt
+from bs4 import BeautifulSoup
+from pathlib import Path
+from configparser import ConfigParser
+from itertools import starmap, chain
+from functools import partial
+
+
+
+def get_account_roles (soup):
+    for saml_account in soup.fieldset(class_='saml-account', recursive=False):
+        account_title = saml_account.find(class_='saml-account-name').string
+        account_alias = account_title.split()[1]
+        account_roles = map(get_saml_role_arn, saml_account(class_='saml-role'))
+        yield account_alias, list(account_roles)
+
+def get_saml_role_arn (saml_role_tag):
+    saml_radio_tag = saml_role_tag.find(class_='saml-radio')
+    saml_role_arn = saml_radio_tag['value']
+    return saml_role_arn
+
+def seperate_account_roles (alias, roles, role_type_pattern):
+    if len(roles) == 1:
+        yield alias, roles[0]
+    else:
+        for role in roles:
+            role_type = role_type_pattern.fullmatch(role).group('type')
+            role_alias = f'{alias}{"-" if role_type else ""}{role_type or ""}'
+            yield role_alias, role
+
+def assemble_profile(name, role_arn, suffix=None, region=None):
+    section = f'profile {name}{suffix or ""}'
+    properties = {'azure_default_role_arn': role_arn}
+    if region is not None:
+        properties['region'] = region
+    return section, properties
+
+def print_config(profiles, print_default=False):
+    config = ConfigParser()
+    if print_default:
+        config.add_section('default')
+    for section, properties in profiles:
+        config[section] = properties
+    config.write(sys.stdout)
+
+if __name__ == '__main__':
+    # Parse CLI arguments
+    arguments = docopt(__doc__, version='AWS Config Generator 1.0')
+    # Prepare some objects for later use
+    baked_profile = partial(assemble_profile, suffix=arguments['--suffix'],
+                            region=arguments['--region'])
+    default_role_type=arguments['--default-role']
+    role_type_pattern = re.compile(
+        r'(?:arn\:aws\:iam\:\:\d+\:role/)'
+        r'(?:netrtl\.com-)?'
+        f'((?:{default_role_type})|(?P<type>.*?))'
+        r'(?:-access-role)?')
+    baked_role_seperator = partial(seperate_account_roles,
+                                   role_type_pattern=role_type_pattern)
+    # Read the document
+    html_location = Path(arguments['<file>']).resolve()
+    with open(html_location) as document:
+        page = BeautifulSoup(document, 'html.parser')
+    # Mangle the data
+    accounts = get_account_roles(page)
+    roles = chain.from_iterable( starmap( baked_role_seperator, accounts ) )
+    profiles = starmap(baked_profile, roles)
+    # Output the config
+    print_config(profiles, arguments['--print-default-profile'])
