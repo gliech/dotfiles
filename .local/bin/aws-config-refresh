@@ -1,7 +1,12 @@
-#!/usr/bin/env make -f
-
+#!/usr/bin/env bash
+# This should have been a make script. But apperantly the linux shebang is
+# defeated by commands with more than 1 argument (#!/usr/bin/env make -f).
+#                                                                     ^^
+# Soo...
+make -f - <<EOF
 ~/.aws/config: ~/.aws/profiles.html
 	aws-config-gen -d --default-role admin $< > $@
 #	aws-config-gen -r eu-central-1 --suffix -🍺 --default-role admin $< >> $@
 #	aws-config-gen -r eu-west-1 --suffix -🍀 --default-role admin $< >> $@
 #	aws-config-gen -r us-east-1 --suffix -🍔 --default-role admin $< >> $@
+EOF
