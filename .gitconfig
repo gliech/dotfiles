@@ -16,7 +16,7 @@
 [status]
     submoduleSummary = true
 [pager]
-    log = less -S
+    log = less --chop-long-lines --shift 3
 [alias]
     graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     chronograph = graph --date-order
