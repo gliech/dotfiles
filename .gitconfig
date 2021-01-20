@@ -10,6 +10,8 @@
     pull = true
 [push]
     default = simple
+[pull]
+    ff = only
 [core]
     excludesfile = ~/.gitignore
     autocrlf = input
