@@ -6,6 +6,7 @@ Plug 'semanser/vim-outdated-plugins'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
+Plug 'sirtaj/vim-openscad'
 call plug#end()
 
 " Add a set of commands that will make the 80th column of a document visible
@@ -28,9 +29,13 @@ set sidescroll=1
 set sidescrolloff=8
 set scrolloff=2
 
+" Rebind Redo to U
+nnoremap U <C-r>
+
 " Classic
 set number
+set nofoldenable
 
 " Yaml Indent
-"autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
