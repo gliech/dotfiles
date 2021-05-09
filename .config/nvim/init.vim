@@ -29,6 +29,18 @@ set sidescroll=1
 set sidescrolloff=8
 set scrolloff=2
 
+" Tweak the neovim popup-style(pum) wildmenu for file selection. Slightly
+" alter the behaviour when you press the tab key and rotate the axe of the
+" arrow keys. https://vi.stackexchange.com/a/22628
+" FIXME: Pressing left during file selection moves up 2 levels in the dir
+" tree. This is a problem with the wildmenu file selector in general.
+set wildmode=longest:full,full
+set wildcharm=<C-z>
+cnoremap <expr> <down> wildmenumode() ? "\<C-n>" : "\<down>"
+cnoremap <expr> <up> wildmenumode() ? "\<C-p>" : "\<up>"
+cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
+cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-z>" : "\<right>"
+
 " Rebind Redo to U
 nnoremap U <C-r>
 
