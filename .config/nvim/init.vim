@@ -7,6 +7,9 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'sirtaj/vim-openscad'
+Plug 'AndrewRadev/bufferize.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " Add a set of commands that will make the 80th column of a document visible
@@ -51,3 +54,13 @@ set nofoldenable
 " Yaml Indent
 autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Treat .hcl files like terraform files (used by hashivim/vim-terraform)
+autocmd BufNewFile,BufReadPost *.hcl set filetype=terraform
+
+" Overwrite airblade/vim-gitgutter highlight colors.
+" https://vi.stackexchange.com/questions/10897/how-do-i-customize-vimdiff-colors
+hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
+hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
+hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
+hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
