@@ -64,3 +64,17 @@ hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
 hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
 hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
 hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
+
+" move lines with Ctrl+Arrows
+nnoremap <ESC>[1;5A :m .-2<CR>
+nnoremap <ESC>[1;5B :m .+1<CR>
+nnoremap <ESC>[1;5C :><CR>
+nnoremap <ESC>[1;5D :<<CR>
+vnoremap <ESC>[1;5A :m '<-2<CR>gv
+vnoremap <ESC>[1;5B :m '>+1<CR>gv
+vnoremap <ESC>[1;5C :><CR>gv
+vnoremap <ESC>[1;5D :<<CR>gv
+inoremap <ESC>[1;5A <Esc>:m .-2<CR>gi
+inoremap <ESC>[1;5B <Esc>:m .+1<CR>gi
+inoremap <ESC>[1;5C <Esc>:><CR>gi
+inoremap <ESC>[1;5D <Esc>:<<CR>gi
