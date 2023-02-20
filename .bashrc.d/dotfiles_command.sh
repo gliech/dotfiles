@@ -18,6 +18,7 @@ possible_locations=(
   "/usr/share/git/completion/git-completion.bash"
   "/usr/share/bash-completion/completions/git"
   "/usr/local/etc/bash_completion.d/git-completion.bash"
+  "/opt/homebrew/etc/bash_completion.d/git-completion.bash"
 )
 
 for completion_file in "${possible_locations[@]}"
