@@ -10,6 +10,8 @@ Plug 'sirtaj/vim-openscad'
 Plug 'AndrewRadev/bufferize.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'hashivim/vim-terraform'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 call plug#end()
 
 " Add a set of commands that will make the 80th column of a document visible
