@@ -1,0 +1,15 @@
+#!/bin/sh
+
+udiskie &
+xscreensaver --no-splash &
+blueman-applet &
+
+if [ -f ~/.screenlayout/${HOSTNAME}.sh ]; then
+   . ~/.screenlayout/${HOSTNAME}.sh
+fi
+
+# Some distros (like archlinux) link /bin/sh to bash. It is safe to load the
+# .bash_profile in that case.
+if [ $BASH_VERSION ]; then
+   . ~/.bash_profile
+fi
