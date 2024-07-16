@@ -14,6 +14,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 call plug#end()
 
+" Explicitely set legacy colorscheme to overwrite the new neovim default
+" colorscheme until I find the time to configure colors properly
+colorscheme vim
+set notermguicolors
+
 " Add a set of commands that will make the 80th column of a document visible
 highlight ColorColumn ctermbg=244 guibg=lightgrey
 command Col let &colorcolumn=join(range(81,100),",")
