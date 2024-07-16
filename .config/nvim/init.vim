@@ -35,7 +35,7 @@ set sidescrolloff=8
 set scrolloff=2
 
 " Tweak the neovim popup-style(pum) wildmenu for file selection. Slightly
-" alter the behaviour when you press the tab key and rotate the axe of the
+" alter the behaviour when you press the tab key and rotate the axis of the
 " arrow keys. https://vi.stackexchange.com/a/22628
 " FIXME: Pressing left during file selection moves up 2 levels in the dir
 " tree. This is a problem with the wildmenu file selector in general.
@@ -52,6 +52,12 @@ nnoremap U <C-r>
 " Classic
 set number
 set nofoldenable
+
+" If this is not set, neovim will hide tabs instead of closing them, resulting
+" in errors if you close a file as tab in one vim instance and subsecuently
+" try to open it in another instance. I have not checked if this has other
+" side effects.
+set nohidden
 
 " Yaml Indent
 autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
