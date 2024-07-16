@@ -61,7 +61,7 @@ set nohidden
 
 " Yaml Indent
 autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 
 " Treat .hcl files like terraform files (used by hashivim/vim-terraform)
 autocmd BufNewFile,BufReadPost *.hcl set filetype=terraform
