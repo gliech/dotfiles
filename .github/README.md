@@ -39,6 +39,7 @@ git --work-tree=$HOME --git-dir=$HOME/.dotgit checkout master
 - fix the umask
 - Vim put the Yaml indent Stuff in a proper filetype detection script (ftplugin?)
 - Vim also add cfn filetype for cfn-lint
+- enable user systemd units during install (for example the sysd ssh-agent)
 
 ## Echos to be replaced by msg()
 - fuck error msg
