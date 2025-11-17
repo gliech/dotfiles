@@ -19,7 +19,6 @@ Plug('tpope/vim-fugitive')
 Plug('tpope/vim-rhubarb')
 vim.call('plug#end')
 
-
 -- Explicitely set legacy colorscheme to overwrite the new neovim default
 -- colorscheme until I find the time to configure colors properly
 vim.cmd.colorscheme('vim')
@@ -60,13 +59,11 @@ vim.opt.sidescroll = 1
 vim.opt.sidescrolloff = 8
 vim.opt.scrolloff = 2
 
-
 -- Tweak the neovim popup-style(pum) wildmenu for file selection. Slightly
 -- alter the behaviour when you press the tab key and rotate the axis of the
 -- arrow keys. https://vi.stackexchange.com/a/22628
 -- FIXME: Pressing left during file selection moves up 2 levels in the dir
 -- tree. This is a problem with the wildmenu file selector in general.
-
 vim.opt.wildmode = {'longest:full', 'full'}
 vim.opt.wildcharm = key2nr('<C-z>')
 vim.keymap.set('c', '<down>', function()
@@ -117,6 +114,17 @@ vim.api.nvim_create_autocmd({'FileType'}, {
   end
 })
 -- vim.cmd([[autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>]])
+
+-- Powershell Indent
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern = {'ps1'},
+  callback = function()
+    vim.opt_local.ts = 4
+    vim.opt_local.sts = 4
+    vim.opt_local.sw = 4
+    vim.opt_local.expandtab = true
+  end
+})
 
 -- Treat .hcl files like terraform files (used by hashivim/vim-terraform)
 vim.api.nvim_create_autocmd({'BufNewFile', 'BufReadPost'}, {
