@@ -131,6 +131,8 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufReadPost'}, {
   pattern = '*.hcl',
   callback = function() vim.opt.filetype = 'terraform' end
 })
+-- use tofu instead of terraform
+vim.g.terraform_binary_path = 'tofu'
 
 -- Overwrite airblade/vim-gitgutter highlight colors.
 -- https://vi.stackexchange.com/questions/10897/how-do-i-customize-vimdiff-colors
