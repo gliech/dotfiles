@@ -39,7 +39,7 @@ vim.cmd.highlight({"ColorColumn", "guibg=DarkGray", "ctermbg=DarkGray"})
 vim.api.nvim_create_user_command('Col',
   function() vim.opt.colorcolumn = vim.fn.range(81,100) end, {})
 vim.api.nvim_create_user_command('NoCol',
-  function() vim.opt.colorcolumn = nil end, {})
+  function() vim.opt.colorcolumn = '' end, {})
 vim.cmd.Col()
 
 -- Disable line wrapping and use some Unicode characters to signify overflow
